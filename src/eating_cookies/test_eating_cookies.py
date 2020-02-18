@@ -1,5 +1,6 @@
 import unittest
-from eating_cookies import eating_cookies
+from src.eating_cookies import eating_cookies
+
 
 class Test(unittest.TestCase):
 
