@@ -1,13 +1,45 @@
-#!/usr/bin/python
-
 import sys
 from collections import namedtuple
+from operator import itemgetter
 
 Item = namedtuple('Item', ['index', 'size', 'value'])
 
 
-def knapsack_solver(items, capacity):
-    pass
+def knapsack_solver(items, capacity, cache=[]):
+    temp_list = items
+
+    temp_capacity = capacity
+
+    output = cache
+
+    temp_highest = 0
+    temp_index = 0
+    temp_size = 0
+
+    temp_lowest = min(temp_list, key=itemgetter(2))[2]
+
+    while temp_capacity > temp_lowest:
+
+        if len(temp_list) > 1:
+            for item in temp_list:
+                if item.value > temp_highest:
+                    temp_highest = item.value
+                    temp_index = item.index - 1
+                    temp_size = item.size
+                    if temp_capacity > temp_size:
+                        temp_capacity -= temp_size
+                        output.append(temp_list[temp_index])
+                        temp_list.remove(temp_list[temp_index])
+                        temp_highest = 0
+                        temp_index = 0
+                        temp_size = 0
+                    else:
+                        print('here')
+                        temp_index = item.index - 1
+                        temp_list.remove(temp_list[temp_index])
+        else:
+            print(output)
+    print(output)
 
 
 if __name__ == '__main__':
