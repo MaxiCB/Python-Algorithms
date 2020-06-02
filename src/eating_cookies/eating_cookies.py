@@ -1,40 +1,23 @@
 import sys
-from itertools import *
 
-occ_total = 0
-
-
-# This does not produce all possible combinations
-def find_all_combos(arr, index, num, reduced):
-    global occ_total
-    # If reduced is less than 0 we are done
-    if reduced < 0:
-        return occ_total
-
-    if reduced == 0:
-        for i in range(index):
-            print(arr[i], end=" ")
-        print(" ")
-        occ_total += 1
-        return occ_total
-
-    prev = 1 if (index == 0) else arr[index - 1]
-
-    for k in range(prev, num + 1):
-        arr[index] = k
-        find_all_combos(arr, index + 1, num, reduced - k)
-
-    # print(occ_total, 'total\n')
-    return occ_total
-
-
-# The cache parameter is here for if you want to implement
-# a solution that is more efficient than the naive 
-# recursive solution
 def eating_cookies(n, cache=None):
-    arr = [0] * n
-    return find_all_combos(arr, 0, n, n)
-
+    # There is only one way to handle 0 cookies
+    if n == 0:
+        return 1
+    # Only one way to handle negative cookies
+    elif n < 0:
+        return 0
+    # If cache and cache[n] greater than 0 return cache[n]
+    elif cache and cache[n] > 0:
+        return cache[n]
+    else:
+        # If no cache create it
+        if not cache:
+            cache = [0 for thing in range(n+1)]
+        # Set the cache[n] to the producs of recursive calls to eating_cookies with n-1..n-3
+        cache[n] = eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
+        # Return cache[n]
+        return cache[n]
 
 if __name__ == '__main__':
     print(eating_cookies(3))

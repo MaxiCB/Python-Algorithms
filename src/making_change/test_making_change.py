@@ -1,5 +1,5 @@
 import unittest
-from src.making_change.making_change import *
+from making_change import *
 
 
 class Test(unittest.TestCase):
