@@ -1,5 +1,5 @@
 import unittest
-from src.stock_prices.stock_prices import *
+from stock_prices import *
 
 
 class Test(unittest.TestCase):

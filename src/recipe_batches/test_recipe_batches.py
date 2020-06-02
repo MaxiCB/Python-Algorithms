@@ -1,5 +1,5 @@
 import unittest
-from src.recipe_batches.recipe_batches import *
+from recipe_batches import *
 
 
 class Test(unittest.TestCase):

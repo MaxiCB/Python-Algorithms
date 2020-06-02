@@ -1,6 +1,6 @@
 import unittest
 import random
-from product_of_all_other_numbers import product_of_all_other_numbers
+from product_of_all import product_of_all_other_numbers
 
 class Test(unittest.TestCase):
     def test_product_of_all_other_numbers(self):
